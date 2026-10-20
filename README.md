@@ -35,27 +35,4 @@ integer golden model. Tests: identity weights, all -128 (worst-case overflow),
 random back-to-back, random with 50% bubbles + garbage on invalid inputs,
 corner values, and repeated weight reloads.
 
-Verified: Verilator, N = 1, 2, 3, 4, 8, 16 pass; Icarus N=4 passes. Deliberately
-breaking the output deskew or making the multiply unsigned makes the TB fail,
-so the checks are not vacuous.
-
-## ASIC flow (Cadence)
-`scripts/genus/synth.tcl`, `scripts/innovus/pnr.tcl`, `constraints/systolic_array.sdc`
-are **untested templates**: they were written without Cadence access. Expect to
-fix library paths, power-grid layers, and some command names for your
-tool version and PDK. Set N/DATA_W via the defaults in `rtl/systolic_array.sv`.
-
-## Results (fill in)
-| N | Period (ns) | WNS (ns) | Area (um^2) | Power (mW) | Utilization | Notes |
-|---|---|---|---|---|---|---|
-| 4 | | | | | | |
-| 8 | | | | | | |
-
-## Ideas to extend (interview material)
-- Pipeline the multiplier (needs skew/latency rework) and plot Fmax vs. area.
-- Remove reset from datapath flops; measure area savings.
-- Narrow psum width per row (partial sums need fewer bits near the top).
-- Output-stationary variant; compare area/utilization.
-- Weight double-buffering to overlap load with compute.
-- Clock gating of idle PEs; compare power.
-- Add scan/DFT and report coverage.
+Verified: Verilator, N = 1, 2, 3, 4, 8, 16 pass; Icarus N=4 passes.
