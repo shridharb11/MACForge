@@ -1,0 +1,11 @@
+build/
+*.vcd
+*.log
+obj_dir/
+# EDA tool output
+genus_run/
+innovus_run/
+*.cmd
+*.cmd_*
+*.logv
+fv/
